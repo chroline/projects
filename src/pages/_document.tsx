@@ -1,5 +1,5 @@
-import NextDocument, { Html, Head, Main, NextScript } from "next/document";
 import { extractCss } from "goober";
+import NextDocument, { Html, Head, Main, NextScript } from "next/document";
 
 export default class MyDocument extends NextDocument<{ css: string }> {
   static async getInitialProps({ renderPage }) {
@@ -11,8 +11,19 @@ export default class MyDocument extends NextDocument<{ css: string }> {
 
   render() {
     return (
-      <Html>
+      <Html lang={"en"}>
         <Head>
+          <meta charSet="utf-8" />
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          <meta
+            name="description"
+            content={`This is the portfolio for Cole Gawin, a full-stack developer, designer, and "brand-gineer".`}
+          />
+          <meta
+            name="keywords"
+            content="portfolio, projects, developer, engineer, coding, programming, cole gawin, projects, typescript, student, programmer, deerfield"
+          />
+
           <style
             id={"_goober"}
             // And defined it in here
