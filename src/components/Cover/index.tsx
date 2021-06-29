@@ -24,7 +24,7 @@ export default function Cover({ src, position = "center" }: { src: string; posit
   return (
     <_Cover>
       <_CoverImage>
-        <Image src={src} layout={"fill"} />
+        <Image src={src} layout={"fill"} alt={"cover image"} />
       </_CoverImage>
     </_Cover>
   );
