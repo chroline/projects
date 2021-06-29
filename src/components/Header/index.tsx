@@ -17,6 +17,10 @@ const _HeaderImageIcon = styled("div")`
   position: relative;
 
   margin: ${theme.spaces[3]};
+
+  img {
+    object-fit: cover;
+  }
 `;
 
 const _HeaderImageEmoji = styled("p")`
@@ -60,11 +64,7 @@ export default function Header({ icon, _iconIsImage, title }: { icon: string; _i
           }
         />
       </Head>
-      {_iconIsImage && (
-        <_HeaderImageIcon>
-          {<Image src={icon} alt={"page icon"} width={140} height={140} quality={100} />}
-        </_HeaderImageIcon>
-      )}
+      {_iconIsImage && <_HeaderImageIcon>{<img src={icon} alt={"page icon"} />}</_HeaderImageIcon>}
       {!_iconIsImage && <_HeaderImageEmoji>{icon}</_HeaderImageEmoji>}
       <_HeaderTitle>{title}</_HeaderTitle>
     </_Header>
