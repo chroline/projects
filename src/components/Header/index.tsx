@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
 
 import { styled } from "goober";
 import Head from "next/head";
+import Image from "next/image";
 
 import theme from "~/styles/theme";
 
@@ -9,9 +11,10 @@ const _Header = styled("div")`
   margin: ${theme.spaces[20]} 0 ${theme.spaces[5]} 0;
 `;
 
-const _HeaderImageIcon = styled("img")`
-  width: ${theme.spaces[32]};
-  height: ${theme.spaces[32]};
+const _HeaderImageIcon = styled("div")`
+  width: 140px;
+  height: 140px;
+  position: relative;
 
   margin: ${theme.spaces[3]};
 `;
@@ -35,6 +38,15 @@ const _HeaderTitle = styled("h1")`
 `;
 
 export default function Header({ icon, _iconIsImage, title }: { icon: string; _iconIsImage: boolean; title: string }) {
+  const [imageIcon, setImageIcon] = useState(undefined);
+
+  useEffect(() => {
+    _iconIsImage &&
+      (async () => {
+        //setImageIcon(await import("../../../public/" + icon));
+      })();
+  });
+
   return (
     <_Header>
       <Head>
@@ -48,7 +60,9 @@ export default function Header({ icon, _iconIsImage, title }: { icon: string; _i
           }
         />
       </Head>
-      {_iconIsImage && <_HeaderImageIcon src={icon} alt={"page icon"} />}
+      {_iconIsImage && (
+        <_HeaderImageIcon>{<Image src={icon} alt={"page icon"} width={140} height={140} />}</_HeaderImageIcon>
+      )}
       {!_iconIsImage && <_HeaderImageEmoji>{icon}</_HeaderImageEmoji>}
       <_HeaderTitle>{title}</_HeaderTitle>
     </_Header>
