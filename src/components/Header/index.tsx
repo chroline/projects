@@ -48,7 +48,7 @@ export default function Header({ icon, _iconIsImage, title }: { icon: string; _i
           }
         />
       </Head>
-      {_iconIsImage && <_HeaderImageIcon src={icon} />}
+      {_iconIsImage && <_HeaderImageIcon src={icon} alt={"page icon"} />}
       {!_iconIsImage && <_HeaderImageEmoji>{icon}</_HeaderImageEmoji>}
       <_HeaderTitle>{title}</_HeaderTitle>
     </_Header>
