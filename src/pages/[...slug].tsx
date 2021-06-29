@@ -17,13 +17,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     .map(file => file.split("src/content/")[1])
     .map(file => file.split(".").slice(0, -1).join("."));
 
-  console.log(
-    files.map(slug => {
-      if (slug.split("/index").length > 1) slug = slug.split("/index").slice(0, -1).join("/index");
-      return { params: { slug } };
-    })
-  );
-
   return {
     paths: files.map(slug => {
       if (slug.split("/index").length > 1) slug = slug.split("/index").slice(0, -1).join("/index");
