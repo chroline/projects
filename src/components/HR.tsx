@@ -2,7 +2,7 @@ import React from "react";
 
 import { styled } from "goober";
 
-import Block from "../Block";
+import Block from "./Block";
 import theme from "~/styles/theme";
 
 const _HR = styled("hr")`

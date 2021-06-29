@@ -3,9 +3,6 @@ import { useEffect, useState } from "react";
 import constate from "constate";
 import { useRouter } from "next/router";
 
-import { useToggleContext } from "../Toggle/ToggleContext";
-import TableOfContents from "./index";
-
 const [TableOfContentsContext, useTableOfContentsContext] = constate(() => {
   const headings = useState<{ level: number; id: number; children: React.ReactNode }[]>([]);
   const headingIndex: [number, () => void] = [

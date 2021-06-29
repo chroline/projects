@@ -1,6 +1,6 @@
 import React from "react";
 
-import Block from "../Block";
+import Block from "./Block";
 import ToggleBody from "./ToggleBody";
 import { ToggleContext } from "./ToggleContext";
 import ToggleHeader from "./ToggleHeader";

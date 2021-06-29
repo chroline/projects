@@ -1,7 +1,7 @@
 import { styled } from "goober";
 import tinycolor from "tinycolor2";
 
-import Block from "../Block/index";
+import Block from "../Block";
 import { useTableOfContentsContext } from "./TableOfContentsContext";
 import theme from "~/styles/theme";
 

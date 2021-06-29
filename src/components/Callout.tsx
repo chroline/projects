@@ -3,7 +3,7 @@ import React from "react";
 import { styled } from "goober";
 import tinycolor from "tinycolor2";
 
-import Block from "../Block";
+import Block from "./Block";
 import theme from "~/styles/theme";
 
 interface CalloutProps {

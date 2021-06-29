@@ -7,10 +7,10 @@ import { useRouter } from "next/dist/client/router";
 
 import PageProps from "~/util/PageProps";
 
-import { mdxComponents } from "..";
-import Cover from "../Cover";
-import Header from "../Header";
-import { TableOfContentsContext, TableOfContentsManager } from "../TableOfContents/TableOfContentsContext";
+import { mdxComponents } from ".";
+import Cover from "./Cover";
+import Header from "./Header";
+import { TableOfContentsContext, TableOfContentsManager } from "./TableOfContents/TableOfContentsContext";
 import theme from "~/styles/theme";
 
 // language: CSS

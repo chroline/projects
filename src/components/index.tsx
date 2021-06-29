@@ -5,7 +5,6 @@ import heading from "./Heading";
 import PageLink from "./PageLink";
 import TableOfContents from "./TableOfContents";
 import Text from "./Text";
-import Bold from "./Text/Bold";
 import Toggle from "./Toggle";
 import ToggleContent from "./Toggle/ToggleContent";
 import ToggleTitle from "./Toggle/ToggleTitle";
@@ -13,11 +12,9 @@ import ToggleTitle from "./Toggle/ToggleTitle";
 export const mdxComponents = {
   Callout,
   PageLink,
-
   Toggle,
   ToggleTitle,
   ToggleContent,
-
   TableOfContents,
 
   h1: heading(1),
@@ -26,7 +23,5 @@ export const mdxComponents = {
 
   p: Text,
   a: Anchor,
-  strong: Bold,
-
   hr: HR,
 };

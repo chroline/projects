@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 import { styled } from "goober";
 
-import Block from "../Block/index";
-import { useTableOfContentsContext } from "../TableOfContents/TableOfContentsContext";
+import Block from "./Block";
+import { useTableOfContentsContext } from "./TableOfContents/TableOfContentsContext";
 import theme from "~/styles/theme";
 
 const _Heading = styled<{ level: number }>("p")`
