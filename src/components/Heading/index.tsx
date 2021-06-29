@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 import { styled } from "goober";
-import shortUUID from "short-uuid";
 
 import Block from "../Block/index";
 import { useTableOfContentsContext } from "../TableOfContents/TableOfContentsContext";
