@@ -81,7 +81,7 @@ export default function Page({ serializedPage, frontmatter }: PageProps) {
             display && {
               url: "https://projects.colegaw.in" + display,
             },
-            {
+            !display && {
               url: _iconIsImage ? "https://projects.colegaw.in" + icon : favicon,
             },
           ].filter(Boolean),
