@@ -17,14 +17,6 @@ export default class MyDocument extends NextDocument<{ css: string }> {
 
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          <meta
-            name="description"
-            content={`This is the portfolio for Cole Gawin, a full-stack developer, designer, and "brand-gineer".`}
-          />
-          <meta
-            name="keywords"
-            content="portfolio, projects, developer, engineer, coding, programming, cole gawin, projects, typescript, student, programmer, deerfield"
-          />
 
           <style
             id={"_goober"}

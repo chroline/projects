@@ -58,7 +58,7 @@ const _Page = styled("article")`
 `;
 
 export default function Page({ serializedPage, frontmatter }: PageProps) {
-  const { icon, _iconIsImage, title, description } = frontmatter,
+  const { icon, _iconIsImage, title, description, keywords, display } = frontmatter,
     favicon = _iconIsImage
       ? icon
       : `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${icon}</text></svg>`;
@@ -67,26 +67,31 @@ export default function Page({ serializedPage, frontmatter }: PageProps) {
     <>
       <Head>
         <title>{title}</title>
-        <NextSeo
-          title={title}
-          description={description}
-          openGraph={{
-            title,
-            description,
-            images: [
-              {
-                url: _iconIsImage ? "https://projects.colegaw.in" + icon : favicon,
-              },
-            ],
-            site_name: "Portfolio — Cole Gawin",
-          }}
-          twitter={{
-            handle: "@colegawin_",
-            cardType: "summary_large_image",
-          }}
-        />
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
         <link rel={"icon"} href={favicon} />
       </Head>
+      <NextSeo
+        title={title}
+        description={description}
+        openGraph={{
+          title,
+          description,
+          images: [
+            display && {
+              url: "https://projects.colegaw.in" + display,
+            },
+            {
+              url: _iconIsImage ? "https://projects.colegaw.in" + icon : favicon,
+            },
+          ].filter(Boolean),
+          site_name: "Portfolio — Cole Gawin",
+        }}
+        twitter={{
+          handle: "@colegawin_",
+          cardType: "summary_large_image",
+        }}
+      />
       <GlobalStyles />
       <TableOfContentsContext>
         <TableOfContentsManager />

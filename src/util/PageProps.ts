@@ -5,6 +5,8 @@ export default interface PageProps {
   frontmatter: {
     title: string;
     description?: string;
+    keywords?: string;
+    display?: string;
     icon: string;
     _iconIsImage: boolean;
     cover: string;
