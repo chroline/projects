@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 import { styled } from "goober";
 import { createGlobalStyles } from "goober/global";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { NextSeo } from "next-seo";
 import { useRouter } from "next/dist/client/router";
+import Head from "next/head";
 
 import PageProps from "~/util/PageProps";
 
@@ -56,8 +58,35 @@ const _Page = styled("article")`
 `;
 
 export default function Page({ serializedPage, frontmatter }: PageProps) {
+  const { icon, _iconIsImage, title, description } = frontmatter,
+    favicon = _iconIsImage
+      ? icon
+      : `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${icon}</text></svg>`;
+
   return (
     <>
+      <Head>
+        <title>{title}</title>
+        <NextSeo
+          title={title}
+          description={description}
+          openGraph={{
+            title,
+            description,
+            images: [
+              {
+                url: _iconIsImage ? "https://projects.colegaw.in" + icon : favicon,
+              },
+            ],
+            site_name: "Portfolio — Cole Gawin",
+          }}
+          twitter={{
+            handle: "@colegawin_",
+            cardType: "summary_large_image",
+          }}
+        />
+        <link rel={"icon"} href={favicon} />
+      </Head>
       <GlobalStyles />
       <TableOfContentsContext>
         <TableOfContentsManager />

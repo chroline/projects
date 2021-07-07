@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 
 import { styled } from "goober";
-import Head from "next/head";
 import Image from "next/image";
 
 import theme from "~/styles/theme";
@@ -42,28 +41,8 @@ const _HeaderTitle = styled("h1")`
 `;
 
 export default function Header({ icon, _iconIsImage, title }: { icon: string; _iconIsImage: boolean; title: string }) {
-  const [imageIcon, setImageIcon] = useState(undefined);
-
-  useEffect(() => {
-    _iconIsImage &&
-      (async () => {
-        //setImageIcon(await import("../../../public/" + icon));
-      })();
-  });
-
   return (
     <_Header>
-      <Head>
-        <title>{title}</title>
-        <link
-          rel={"icon"}
-          href={
-            _iconIsImage
-              ? icon
-              : `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${icon}</text></svg>`
-          }
-        />
-      </Head>
       {_iconIsImage && <_HeaderImageIcon>{<img src={icon} alt={"page icon"} />}</_HeaderImageIcon>}
       {!_iconIsImage && <_HeaderImageEmoji>{icon}</_HeaderImageEmoji>}
       <_HeaderTitle>{title}</_HeaderTitle>

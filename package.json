@@ -15,6 +15,7 @@
     "gray-matter": "^4.0.3",
     "next": "latest",
     "next-mdx-remote": "^3.0.2",
+    "next-seo": "^4.26.0",
     "preact": "^10.5.13",
     "preact-render-to-string": "^5.1.19",
     "react": "npm:@preact/compat",
