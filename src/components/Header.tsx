@@ -25,6 +25,9 @@ const _HeaderImageIcon = styled("div")`
 const _HeaderImageEmoji = styled("p")`
   font-size: ${theme.spaces[20]};
   margin-bottom: -${theme.spaces[3]};
+
+  z-index: 1;
+  position: relative;
 `;
 
 const _HeaderTitle = styled("h1")`
