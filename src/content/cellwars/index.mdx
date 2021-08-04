@@ -1,0 +1,122 @@
+---
+title: "CellWars: Cellular Automata"
+icon: "🧫"
+_iconIsImage: false
+---
+
+<Callout icon="🦠" bgColor="emerald" textColor="emerald">
+
+**Cellular automata with competitive AIs.**
+
+</Callout>
+
+---
+
+<TableOfContents />
+
+# Overview
+
+This project was completed for my *Honors Advanced Computer Science, Data Structures & Algorithms* class. The objective was to create a competitive AI that would eliminate other AIs from the "society". I took inspiration from organic bacteria behaviors and bactericidal agents to create an algorithm, cleverly titled `BactericAIdal` (pronounced "bacteris-A-I-dal"), that is very effective at eliminating other players.
+
+---
+
+# Assignment details
+
+These are the instructions given for the assignment.
+
+## Objective
+
+Here's how the game works:
+
+Each player will get to design their own AI which must be a subclass of `CellAI`. The progression of the game is follows:
+
+1. The game is played on a square grid made of int values.  Numbers that are 0 or larger in the grid represent player cells, while the value -1 indicates a dead cell.  Each `CellAI `is given a unique id number.  In a 4 player game, there will be 5 different values in the grid: -1, 0, 1, 2, and 3
+
+2. At the beginning, each player has their id number placed in random spots in the grid.
+
+3. The number of cells in the grid depends on the number of players - you can find information about this in the populateGrid method of the Simulation class.
+
+4. The first player loaded into the game selects a location in the grid to either
+ 
+    a. kill a cell that is alive (A player can kill their own cell or an opponent's cell)
+    
+    b. spawn an offspring if the selected cell is dead 
+
+5. After this choice is made, one iteration of the game of life is run.
+
+6. After the first player's turn is over, then it is the second player's turn.  This process continues until there is only one player left (or 0 if both players die out at the same time).
+
+Here's how the rules of the Game of Life are modified for multiplayer:
+
+1.  if a cell is dead and it has three living neighbors, then it will come to life.  The type of spawned cell will depend on which neighbor is most common.  If there is a three-way tie for most common, then the cell type is chosen at random from the most common neighbors.
+
+2. if a cell is alive and has more than 3 or fewer than 2 neighbors, then it dies
+
+3. if a cell is dead and doesn't have three living neighbors, then it stays dead
+
+4. if a cell is alive and has 2 or 3 living neighbors, then it will change to the type of the most common neighbor (or be choosen at random in the case of a tie).
+
+
+## Directions
+To get started, make a subclass of the CellAI class and give it a code name. 
+In the comments at the top of your class make sure to include your name. 
+
+1. Override the `getAIName()` method so it returns the code name for your AI.  
+
+2. Override the `select()` method.  This method gets called on your turn.  The parameter passed to this method is the current state of the grid.  If you call `getID()` it will tell you the id of your cells.  Any number 0 or larger in the grid is a living cell, -1 is a dead cell.  You are to return a Location object that presents your choice of spot to either to bring a cell to life or to kill a living cell. Remember that the first row is 0 and the first column is 0.  I wonder what the last row and column would be?  You might be wondering - can't I just modify the grid?  Sorry - the grid parameter is an immutable object.
+
+3. Spend time examining the provided AI classes. What strategy are they employing? Also, spend time looking through the Grid and GridFunction classes. Each provides some very helpful methods for building your AI. Spend some time thinking about what kind of strategy you want to employ. How can you leverage Conway’s Game of Life rules to your advantage? 
+
+4. Get started building your AI. Your implementation must be fundamentally different than one of the samples provided. Have fun with it and experiment with different strategies. Include a 
+description of the strategy your AI is implementing in the header of the class file.
+
+You are given 3 sample AIs to play against: `LawnMowerAI`, `SpawnerAI`, and `RandomAI`. Each implement their own strategies.
+
+# Strategy
+_**"the only real defense is active defense" - Mao Zedong**_
+
+*Bacteria* are "unicellular microorganisms" that are often developed to expand and reproduce. *Clusters* are groups of the same form of bacteria whose goal is to expand and reproduce, as defined by that form of bacteria. *Bacteriostatic agents* are formulated to inhibit the growth of bacteria, while *bactericides* are substances which kill bacteria typically by means of infection or targeted attacks.
+
+`BactericAIdal` treats each cluster of cells in the Game of Life society as a cluster of bacteria, and its main goal is to inhibit and then kill that bacteria. It accomplishes this goal by targeting growing "bacteria" and either infecting or attacking it.
+
+## Part 1: Targeting
+The first step of the algorithm implemented by `BactericAIdal` is targeting a specific which cell to infect or attack. A nested for-loop scans through each cell in the provided grid and selects a cell that matches the following criteria:
+
+- is dead
+- is not going to die in the next round
+- the most common neighbor is not BactericAIdal
+
+In order to determine which cells fit this criteria, the `mostCommonNeighbor` method on the GridFunctions class is used. An additional method was created called cellWillDie that determines if the provided cell will die in the next round, given its current state.
+
+## Part 2: Elimination
+- The cell must not have been subject to a previous attack. This check is done to confirm that the cell is not part of a still life, in which case it is not suitable for a targeted attack but rather an infection. Jump to Part 2b: Infection
+- Otherwise, jump to Part 2a: Targeted Attack
+
+### Part 2a: Targeted Attack
+Once the chosen cell has been deemed suitable for a targeted attack, `BactericAIdal` will "select" this cell. This will kill the bacterium in the cluster. The theory behind a targeted attack is that by eliminating one of the cells in the cluster, a chain reaction will occur because the structure of the cluster has been dismantled.
+
+### Part 2b: Infection
+If the chosen cell has been deemed suitable for an infection, another process must occur before a cell is "selected". The cell must not be part of a previous attack in order to prevent the repeated unsuccessful infection of a still life. If it has been part of a previous unsuccessful attack, the column of the selected cell is moved to the right until:
+- it is empty
+- it has not been part of a previous unsuccessful attack
+
+This will make sure that the selected cell that will perform the infection is directly to the right of the cluster. If the selected cell can no longer move to the right due to it being on the edge, the row is moved upwards once so that the selected cell is directly on top of the cluster.
+
+## Part 3: Attack Monitoring
+To make sure that an unsuccessful infection or attack is not repeated, `BactericAIdal` maintains a `previousAttack` ArrayList that keeps track of what locations have been used in a previous attack. When that attack is determined to be complete (i.e. it is no longer attacking the same cluster), the `previousAttack` list is reset.
+
+---
+
+<Callout icon="✅" bgColor="emerald">
+
+In case you were wondering, `BactericAIdal` was very successful in CellWars, ultimately winning the class-wide competition.
+
+</Callout>
+
+<p />
+
+<PageLink icon="🔙" to="/">
+
+Return to portfolio homepage
+
+</PageLink>
