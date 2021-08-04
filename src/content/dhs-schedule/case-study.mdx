@@ -1,0 +1,73 @@
+---
+title: "Case study | DHS Schedule App"
+icon: "🧑‍💻"
+_iconIsImage: false
+---
+
+<TableOfContents />
+
+# Ideation
+
+The DHS Schedule App was originally created by the Deerfield High School CodeWarriors team. Unforunately, the app had not been updated in a couple of years and was not properly equipped for users. The old schedule app had a few key issues that urgently needed to be addressed.
+
+## Key issues
+
+1. **Was not cross-platform.** The old version of the app was made specifically for iOS users. There were no available apps for Android that were tailored to the DHS schedule.
+
+2. **Did not support new iOS versions.** The old version of the app used an outdated combination of XCode and Swift, which led to the app not fully filling the screen on newer models of iPhones (iPhone X and newer).
+
+3. **Was not updated for hybrid schedule.** For the 2020-2021 school year, Deerfield High School switched to a remote/hybrid learning model and adjusted the schedules of students to accomodate this updated learning model. However, the old version of the app was not updated for this schedule and, as such, was unusable by students for this school year.
+
+With these key issues in mind, I set out to create an updated version of the app that improved on the old app with a redesigned UI, new features, and improved UX.
+
+I reached out to DHS students to seek out ideas for what features I should add and what improvements need to be made from the old schedule app. Many students had the same ideas in mind:
+
+- Push notifications for upcoming classes
+- Customization features
+- View schedules of future dates
+
+# Development process
+
+To address key issues 1 & 2, I opted to use a cross-platform hybrid app development framework that runs on both iOS and Android. This choice made it possible to use one codebase for both platforms, and for users both platforms to use the same app.
+
+To address key issue 3, I first-and-foremost created `YAML` a file that stored the schedule. I chose the `YAML` format because it can be easily understood by the app and by humans, so the schedule can be changed and updated in the future. This will future-proof the app for future school years.
+
+Once the key issues were addressed, I began designing the app using Figma. The app uses the Material Design framework because it is an accessible, user-friendly design framework that makes beautiful products without much design work.
+
+![Marketing Image](/dhs-schedule/marketing.png)
+
+<Callout icon="💡" textColor="black">
+
+These design screenshots are used as the app previews on the iOS App Store.
+
+</Callout>
+
+These app preview designs were easily implemented in code because thanks to the many available Material Design component libraries and packages.
+
+I am most proud of the customization feature because the implementation in code is almost identical to the original Figma design, and it strongly enhances the user experience with the app.
+
+# Problems
+
+The main problem I encountered was with scheduling notifications.
+
+Originally, the app notifications were scheduled in advance when the user enabled them. When the user enabled notifications, a push notification would be scheduled for each period of each day for the rest of the school year. However, mobile OSes limit how many notifications can be scheduled in advance, which was a major issue for this original notification scheduling process.
+
+Another issue with this logic is that the school year schedule is variable throughout the entire year. School days are often cancelled only a few weeks in advance, and due to the dynamic nature of the Deerfield High School schedule, some days may have different schedules than originally planned. If notifications were scheduled too far in advance, a user may receive notifications at incorrect times due to the notifications not being rescheduled in time.
+
+To circumvent this, I implemented a new process. The app only schedules notifications a single week in advance; on Friday, the app prompts the user to reschedule them for the next week. This solves the original scheduling issue by limiting the amount of notifications scheduled in advance. It also avoids the issue of incorrect notifications, because the time between notification scheduling and the notification being pushed to the user will be much shorter than previously imagined.
+
+# Takeaways
+
+This was my first time working with a cross-platform app development framework, and it really was a great experience. Although the app doesn't always run as smoothly as a native app would, 9 times out of 10 this isn't noticable.
+
+Altogether, I feel accomplished with the outcome of this project. The final product addresses real issues that students in my local community encountered with outdated software, and my solution made a noticeable impact. To date, the 2020-2021 version of the DHS Schedule App has been downloaded by over 200 unique users, accounting for a large percentage of Deerfield High School students.
+
+Unfortunately, I am not permitted to release the source code of this project at this time due to copyright restrictions on "Deerfield High School," "DHS," "Warriors," and the "Warriors" logo. However, if you are interested in learning more about the specifics of the development of this app, please don't hesitate to reach out!
+
+<p />
+
+<PageLink icon="🔙" to="/dhs-schedule">
+
+Return to project homepage
+
+</PageLink>
